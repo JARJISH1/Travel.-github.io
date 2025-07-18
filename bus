@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>বাস সিট প্যানেল</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .seat {
+      width: 40px;
+      height: 40px;
+      background-color: #4CAF50;
+      color: white;
+      margin: 5px;
+      display: inline-block;
+      line-height: 40px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .seat.booked {
+      background-color: red;
+      cursor: not-allowed;
+    }
+    .seat.selected {
+      background-color: blue;
+    }
+    .row {
+      margin-bottom: 10px;
+    }
+    .aisle {
+      display: inline-block;
+      width: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h2>বাসের সিট প্যানেল (৩৬)</h2>
+  <div id="seatPanel"></div>
+
+  <script>
+    const seatPanel = document.getElementById("seatPanel");
+    let seatNumber = 1;
+
+    for(let row = 0; row < 9; row++) {
+      const rowDiv = document.createElement("div");
+      rowDiv.className = "row";
+
+      // Left 2 seats
+      for(let i = 0; i < 2; i++) {
+        const seat = document.createElement("div");
+        seat.className = "seat";
+        seat.innerText = seatNumber++;
+        seat.onclick = () => {
+          if (!seat.classList.contains("booked")) {
+            seat.classList.toggle("selected");
+          }
+        };
+        rowDiv.appendChild(seat);
+      }
+
+      // Aisle
+      const aisle = document.createElement("div");
+      aisle.className = "aisle";
+      rowDiv.appendChild(aisle);
+
+      // Right 2 seats
+      for(let i = 0; i < 2; i++) {
+        const seat = document.createElement("div");
+        seat.className = "seat";
+        seat.innerText = seatNumber++;
+        seat.onclick = () => {
+          if (!seat.classList.contains("booked")) {
+            seat.classList.toggle("selected");
+          }
+        };
+        rowDiv.appendChild(seat);
+      }
+
+      seatPanel.appendChild(rowDiv);
+    }
+  </script>
+</body>
+</html>
